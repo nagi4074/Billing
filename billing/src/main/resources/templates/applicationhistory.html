@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+    <header></header>
+    <body>
+        アプリケーション一覧
+        <ul>
+            <li th:each="app : ${applications}"
+            th:text="${app.application}"></li>
+        </ul>
+    </body>
+</html>
