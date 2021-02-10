@@ -8,6 +8,9 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ApplicationMapper {
-    List<Application> all();
+    //アプリ一覧を表示
+    List<Application> applicationAll();
+    //総課金額を表示
+    List<Application> totalBilling();
     
 }

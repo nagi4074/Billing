@@ -11,7 +11,10 @@
       <result property="remarks" column="remarks"/>
     </resultMap>
     <!-- SQL -->
-    <select id="all" resultMap="applicationResultMap">
+    <select id="applicationAll" resultMap="applicationResultMap">
         SELECT DISTINCT application FROM billing
+    </select>
+    <select id="totalBilling" resultMap="applicationResultMap">
+        SELECT SUM(billing) FROM billing
     </select>
 </mapper>

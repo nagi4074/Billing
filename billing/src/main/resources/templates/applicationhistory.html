@@ -7,5 +7,9 @@
             <li th:each="app : ${applications}"
             th:text="${app.application}"></li>
         </ul>
+
+        <p th:each="total : ${totalBilling}"
+        th:text="'総課金額：' + ${total.application} + '円'"></p>
+        <a>入力画面へ</a>
     </body>
 </html>

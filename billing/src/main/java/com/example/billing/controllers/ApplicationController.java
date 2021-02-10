@@ -20,8 +20,10 @@ public class ApplicationController {
     }
     @GetMapping("/applicationhistory")
     public String index(Model model){
-        List<Application> applications = applicationMapper.all();
+        List<Application> applications = applicationMapper.applicationAll();
+        List<Application> totalBilling = applicationMapper.totalBilling();
         model.addAttribute("applications", applications);
+        model.addAttribute("totalBilling", totalBilling);
         return "applicationhistory";
     }
 }
