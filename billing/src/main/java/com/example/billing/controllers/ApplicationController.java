@@ -26,4 +26,9 @@ public class ApplicationController {
         model.addAttribute("totalBilling", totalBilling);
         return "applicationhistory";
     }
+
+    @GetMapping("/input")
+    public String input(){
+        return "input";
+    }
 }
