@@ -12,5 +12,6 @@ public interface ApplicationMapper {
     List<Application> applicationAll();
     //総課金額を表示
     List<Application> totalBilling();
+    void addData(Application data);
     
 }

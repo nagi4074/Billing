@@ -2,24 +2,24 @@
 <html>
     <header></header>
     <body>
-        <form action="#">
+        <form action="/input" method="POST">
             <p>課金日<br>
-                <input type="date"></p>
+                <input type="date" name="date"></p>
             <p>課金額<br>
-                <input type="number">円</p>
+                <input type="number" name="billing">円</p>
             <p>アプリ名<br>
-                <input type="text"></p>
+                <input type="text" name="appName"></p>
             <p>ガチャ結果(任意) <br>
-                <select>
+                <select name="result">
                     <option>普通</option>
                     <option>当たり</option>
                     <option>爆死</option>
                 </select></p>
             <p>備考<br>
-                <textarea rows="4" cols="30"></textarea>
+                <textarea rows="4" cols="30" name="remarks"></textarea>
 
             </p>
-            <p><input type="button" value="登録"></p>
+            <p><input type="submit" value="登録"></p>
         </form>
         <p><a href="/applicationhistory">履歴画面へ</a></p>
     </body>

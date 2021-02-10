@@ -21,6 +21,14 @@ public class Application {
         this.application = application;
     }
 
+    public Application(Date date, int billing, String application, String result, String remarks){
+        this. date = date;
+        this.billing = billing;
+        this.application = application;
+        this.result = result;
+        this.remarks = remarks;
+    }
+
     public Application(int id, Date date, int billing, String application, String result, String remarks){
         this.id = id;
         this. date = date;

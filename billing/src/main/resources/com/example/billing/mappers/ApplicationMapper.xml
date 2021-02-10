@@ -17,4 +17,7 @@
     <select id="totalBilling" resultMap="applicationResultMap">
         SELECT SUM(billing) FROM billing
     </select>
+    <insert id="addData" parameterType="com.example.billing.domains.Application">
+        INSERT INTO billing(date, billing, application, result, remarks) VALUES (#{date}, #{billing}, #{application}, #{result}, #{remarks});
+    </insert>
 </mapper>
