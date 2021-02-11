@@ -24,6 +24,12 @@
         SELECT date, billing, application, result, remarks FROM billing WHERE id = (SELECT MAX(id) from billing);
     </select>
     <select id="showTotalBillingOfApp" resultMap="applicationResultMap">
-        SELECT DISTINCT SUM(billing) from billing WHERE application = (SELECT application from billing WHERE id = (SELECT MAX(id) from billing));
+        SELECT SUM(billing) from billing WHERE application = (SELECT application from billing WHERE id = (SELECT MAX(id) from billing));
+    </select>
+    <select id="showTotalBillingInApp" resultMap="applicationResultMap" parameterType="String">
+        SELECT SUM(billing) from billing WHERE application = #{appName};
+    </select>
+    <select id="showAllDataInApp" resultMap="applicationResultMap" parameterType="String">
+        SELECT * FROM billing WHERE application = #{appName};;
     </select>
 </mapper>

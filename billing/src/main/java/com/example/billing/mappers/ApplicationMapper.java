@@ -18,5 +18,9 @@ public interface ApplicationMapper {
     Application showResultData();
     //result.htmlでのアプリ内総課金額の表示
     Application showTotalBillingOfApp();
+    //billinghistory.htmlでのアプリ内総課金額の表示
+    Application showTotalBillingInApp(String appName);
+
+    List<Application> showAllDataInApp(String appName); 
     
 }

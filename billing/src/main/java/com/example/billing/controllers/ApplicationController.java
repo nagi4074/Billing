@@ -1,8 +1,11 @@
 package com.example.billing.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import com.example.billing.domains.Application;
 import com.example.billing.mappers.ApplicationMapper;
@@ -84,4 +87,38 @@ public class ApplicationController {
         model.addAttribute("totalInApp", totalInApp);
         return "result";
     }
+
+    //billinghistory.html
+    @GetMapping("/billinghistory/{appName}")
+    public String billingHistory(@PathVariable("appName") String appName, Model model){
+        Application billingInApp = applicationMapper.showTotalBillingInApp(appName);
+        List<Application> resultData = applicationMapper.showAllDataInApp(appName);
+
+        int total = billingInApp.getBilling();
+        List<Map<String, Object>> allData = new ArrayList<Map<String,Object>>();
+
+        for(Application app : resultData){
+            Map<String, Object> data = new HashMap<String, Object>();
+            
+            Date date = app.getDate();
+            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+
+            data.put("id", app.getId());
+            data.put("date", f.format(date));
+            data.put("billing", app.getBilling());
+            data.put("application", app.getApplication());
+            data.put("result", app.getResult());
+            data.put("remarks", app.getRemarks());
+
+            allData.add(data);
+        }
+
+        model.addAttribute("total", total);
+        model.addAttribute("allData", allData);
+
+        return "billinghistory";
+    }
+    
+
+    
 }

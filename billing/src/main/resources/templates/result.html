@@ -19,8 +19,8 @@
                 <td th:text="${remarks}"></td>
             </tr>
         </table>
-        <p th:text="'このアプリでの課金額:' + ${totalInApp}"></p>
-        <p th:text="'総課金額:' + ${total}"></p>
+        <p th:text="'このアプリでの課金額:' + ${totalInApp} + '円'"></p>
+        <p th:text="'総課金額:' + ${total}  + '円'"></p>
         <a href="/input">入力画面へ</a>　<a href="applicationhistory">履歴画面へ</a>
     </body>
 </html>

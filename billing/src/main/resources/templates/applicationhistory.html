@@ -4,8 +4,8 @@
     <body>
         アプリケーション一覧
         <ul>
-            <li th:each="app : ${applications}"
-            th:text="${app.application}"></li>
+            <a th:each="app : ${applications}" th:href="@{billinghistory/{appName}(appName=${app.application})}"><li 
+            th:text="${app.application}"></li></a>
         </ul>
 
         <p th:each="total : ${totalBilling}"
