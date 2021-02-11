@@ -12,12 +12,18 @@
     </resultMap>
     <!-- SQL -->
     <select id="applicationAll" resultMap="applicationResultMap">
-        SELECT DISTINCT application FROM billing
+        SELECT DISTINCT application FROM billing;
     </select>
     <select id="totalBilling" resultMap="applicationResultMap">
-        SELECT SUM(billing) FROM billing
+        SELECT SUM(billing) FROM billing;
     </select>
     <insert id="addData" parameterType="com.example.billing.domains.Application">
         INSERT INTO billing(date, billing, application, result, remarks) VALUES (#{date}, #{billing}, #{application}, #{result}, #{remarks});
     </insert>
+    <select id="showResultData" resultMap="applicationResultMap">
+        SELECT date, billing, application, result, remarks FROM billing WHERE id = (SELECT MAX(id) from billing);
+    </select>
+    <select id="showTotalBillingOfApp" resultMap="applicationResultMap">
+        SELECT DISTINCT SUM(billing) from billing WHERE application = (SELECT application from billing WHERE id = (SELECT MAX(id) from billing));
+    </select>
 </mapper>

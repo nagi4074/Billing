@@ -11,7 +11,11 @@ public class Application {
     private String remarks;
 
     public Application(String application){
-        this.application = application;
+        if(application.matches("\\d*")){ 
+            this.billing = Integer.parseInt(application);
+        }else{
+            this.application = application;
+        }
     }
 
     public Application(int id, Date date, int billing, String application){
