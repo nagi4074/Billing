@@ -6,7 +6,7 @@
             <p>課金日<br>
                 <input type="date" name="date"  th:value="${date}"></p>
             <p>課金額<br>
-                <input type="number" name="billing" th:value="${data.billing}">円</p>
+                <input type="number" name="billing" th:value="${data.billing}" th:min="0">円</p>
             <p>アプリ名<br>
                 <input type="text" name="appName" th:value="${data.application}"></p>
             <p>ガチャ結果(任意) <br>
