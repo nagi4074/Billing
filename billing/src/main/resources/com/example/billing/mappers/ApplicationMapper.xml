@@ -30,6 +30,15 @@
         SELECT SUM(billing) from billing WHERE application = #{appName};
     </select>
     <select id="showAllDataInApp" resultMap="applicationResultMap" parameterType="String">
-        SELECT * FROM billing WHERE application = #{appName};;
+        SELECT * FROM billing WHERE application = #{appName};
     </select>
+    <select id="showOneData" resultMap="applicationResultMap" parameterType="Integer">
+        SELECT date, billing, application, result, remarks FROM billing WHERE id = #{id};
+    </select>
+    <update id="update" parameterType="com.example.billing.domains.Application">
+        UPDATE billing SET date=#{date}, billing=#{billing}, application=#{application}, result=#{result}, remarks=#{remarks} WHERE id=#{id};
+    </update>
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM billing WHERE id=#{id};
+    </delete>
 </mapper>

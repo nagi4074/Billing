@@ -22,5 +22,11 @@ public interface ApplicationMapper {
     Application showTotalBillingInApp(String appName);
 
     List<Application> showAllDataInApp(String appName); 
+
+    Application showOneData(int id);
+
+    void update(Application application);
+
+    void delete(int id);
     
 }

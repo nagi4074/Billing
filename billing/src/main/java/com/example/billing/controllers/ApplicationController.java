@@ -15,11 +15,13 @@ import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ApplicationController {
@@ -99,7 +101,7 @@ public class ApplicationController {
 
         for(Application app : resultData){
             Map<String, Object> data = new HashMap<String, Object>();
-            
+
             Date date = app.getDate();
             SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -118,7 +120,41 @@ public class ApplicationController {
 
         return "billinghistory";
     }
+
+    /*
+    @DeleteMapping("/billinghistory/{appName}")
+    public void deleteData(){
+        applicationMapper.delete();
+    }*/
     
+
+
+    //edit.html
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") int id, Model model){
+        Application data = applicationMapper.showOneData(id);
+
+        String[] assesment = {"普通", "当たり", "爆死"};
+        
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        String date = f.format(data.getDate());
+
+        model.addAttribute("data", data);
+        model.addAttribute("date", date);
+        model.addAttribute("assesment", assesment);
+        return "edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String edit(@PathVariable("id") int id, @RequestParam(name = "date") String date, @RequestParam(name = "billing")Integer billing, @RequestParam(name = "appName")String application, @RequestParam(name = "result", defaultValue = "" )String result,@RequestParam(name = "remarks", defaultValue = "") String remarks, RedirectAttributes attributes){
+        java.sql.Date sqlDate = java.sql.Date.valueOf(date);
+        Application app = new Application(id, sqlDate, billing, application, result, remarks);
+        applicationMapper.update(app);
+
+        attributes.addAttribute("url", application);
+
+        return "redirect:/billinghistory/{url}";
+    }
 
     
 }

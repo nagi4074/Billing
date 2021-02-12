@@ -16,7 +16,8 @@
                 <td th:text=${allData.billing}></td>
                 <td th:text=${allData.result}></td>
                 <td th:text=${allData.remarks}>備考</td>
-                <td><a href="#">編集</a> <a href="#">削除</a></td>
+                <td><a th:href="@{/edit/{id}(id=${allData.id})}">編集</a>
+                    <a href="\applicationhistory" type="submit" name="delete" th:value="${allData.id}" onclick="return confirm('削除します。\n よろしいですか？')">削除</a></td>
             </tr>
         </table>
         <p th:text="'累計課金額:' + ${total}  + '円'"></p>
